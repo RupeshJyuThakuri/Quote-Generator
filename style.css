@@ -21,6 +21,11 @@ body {
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
 }
+body.dark{
+  --bg-color: #000000;
+  --text-color: #ffffff;
+
+}
 
 main {
   margin: auto;
@@ -40,10 +45,40 @@ main {
 .theme-switch {
   width: 50px;
   height: 24px;
-  background-color: #000000;
   position: relative;
+}
+.theme-switch input{
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.slider{
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 25px;
+  top: 0;
+  bottom: 0;
   left: 0;
-  display: inline-block;
+  right: 0;
+  transition: 0.4s;
+}
+.slider::before{
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+input:checked + .slider{
+  background-color: blue;
+}
+input:checked + .slider::before{
+  transform: translateX(26px);
 }
 
 h1 {
@@ -61,8 +96,8 @@ h1 {
       font-size: 16px;
       /* border: var(--text-color); */
       border-radius: 5px;
-      background-color: var(--bg-color);
-      background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+      background-color: white;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="${var}" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
       background-repeat: no-repeat;
       background-position: right 12px center;
       background-size: 18px;
@@ -76,7 +111,9 @@ h1 {
 }
 .quote-box{
     margin-top: 2%;
-    font-size: var(--quote-font-size);
+}
+.quote-text{
+  font-size: var(--quote-font-size);
 }
 
 .quote-text::before{
@@ -99,8 +136,9 @@ h1 {
 .npr-btn{
     margin-bottom: 2%;
 }
+
 #next-btn, #prev-btn, #rand-btn, #decrease-font, #increase-font{
-    margin: 0 2%;
+    margin: 2%;
     background-color: var(--text-color);
     color: var(--bg-color);
     padding: 7px 25px;
@@ -108,3 +146,12 @@ h1 {
     border: none;
     cursor: pointer;
 }
+#next-btn:hover, #prev-btn:hover, #rand-btn:hover, #decrease-font:hover, #increase-font:hover{
+    opacity: 0.9;
+}
+#next-btn:active, #prev-btn:active, #rand-btn:active, #decrease-font:active, #increase-font:active{
+    opacity: 0.7;
+}
+
+
+/* This code is fully responsive without any single code of media query :) */
